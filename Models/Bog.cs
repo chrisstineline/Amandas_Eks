@@ -16,5 +16,7 @@ namespace Amanda_Eks.models
         public string Udgiver { get; set; }
         public double MatchPercentage { get; set; }
         public string ISBN { get; set; }
+        public int AntalSider { get; set; }
+        public int Kapitler { get; set; }
     }
 }

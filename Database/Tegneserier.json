@@ -1,402 +1,47 @@
 [
-    {
-        "Title": "Watchmen",
-        "Publisher": "Marvel Comics",
-        "Author": "Frank Miller",
-        "ISBN": "978-279181554",
-        "Year": 2011,
-        "Rating": 4.2
-    },
-    {
-        "Title": "Daredevil",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Alan Moore",
-        "ISBN": "978-553891953",
-        "Year": 2010,
-        "Rating": 4.8
-    },
-    {
-        "Title": "Green Lantern",
-        "Publisher": "DC Comics",
-        "Author": "Alan Moore",
-        "ISBN": "978-193510737",
-        "Year": 2011,
-        "Rating": 4.1
-    },
-    {
-        "Title": "Iron Man",
-        "Publisher": "Image Comics",
-        "Author": "Frank Miller",
-        "ISBN": "978-108460148",
-        "Year": 2011,
-        "Rating": 4.4
-    },
-    {
-        "Title": "Saga",
-        "Publisher": "Marvel Comics",
-        "Author": "Frank Miller",
-        "ISBN": "978-369848267",
-        "Year": 2013,
-        "Rating": 4.9
-    },
-    {
-        "Title": "Ms. Marvel",
-        "Publisher": "Image Comics",
-        "Author": "Robert Kirkman",
-        "ISBN": "978-828881265",
-        "Year": 2013,
-        "Rating": 4.8
-    },
-    {
-        "Title": "X-Men",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Jack Kirby",
-        "ISBN": "978-970596791",
-        "Year": 2019,
-        "Rating": 4.2
-    },
-    {
-        "Title": "The Flash",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Alan Moore",
-        "ISBN": "978-634064948",
-        "Year": 2014,
-        "Rating": 4.1
-    },
-    {
-        "Title": "Batman: The Dark Knight Returns",
-        "Publisher": "IDW Publishing",
-        "Author": "Brian K. Vaughan",
-        "ISBN": "978-756956453",
-        "Year": 2016,
-        "Rating": 4.3
-    },
-    {
-        "Title": "Hellboy",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Stan Lee",
-        "ISBN": "978-612101945",
-        "Year": 2021,
-        "Rating": 5.0
-    },
-    {
-        "Title": "Sandman",
-        "Publisher": "Image Comics",
-        "Author": "Alan Moore",
-        "ISBN": "978-152034296",
-        "Year": 2010,
-        "Rating": 4.5
-    },
-    {
-        "Title": "Green Lantern",
-        "Publisher": "IDW Publishing",
-        "Author": "Alan Moore",
-        "ISBN": "978-750754731",
-        "Year": 2015,
-        "Rating": 4.2
-    },
-    {
-        "Title": "The Avengers",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Robert Kirkman",
-        "ISBN": "978-636705194",
-        "Year": 2014,
-        "Rating": 4.6
-    },
-    {
-        "Title": "Deadpool",
-        "Publisher": "IDW Publishing",
-        "Author": "Robert Kirkman",
-        "ISBN": "978-158263642",
-        "Year": 2017,
-        "Rating": 4.9
-    },
-    {
-        "Title": "Captain America",
-        "Publisher": "DC Comics",
-        "Author": "Robert Kirkman",
-        "ISBN": "978-166625514",
-        "Year": 2012,
-        "Rating": 4.8
-    },
-    {
-        "Title": "The Avengers",
-        "Publisher": "IDW Publishing",
-        "Author": "Jack Kirby",
-        "ISBN": "978-262344305",
-        "Year": 2021,
-        "Rating": 5.0
-    },
-    {
-        "Title": "Hellboy",
-        "Publisher": "Image Comics",
-        "Author": "Alan Moore",
-        "ISBN": "978-755920159",
-        "Year": 2013,
-        "Rating": 4.6
-    },
-    {
-        "Title": "X-Men",
-        "Publisher": "DC Comics",
-        "Author": "Neil Gaiman",
-        "ISBN": "978-505994395",
-        "Year": 2020,
-        "Rating": 4.6
-    },
-    {
-        "Title": "Justice League",
-        "Publisher": "Image Comics",
-        "Author": "Robert Kirkman",
-        "ISBN": "978-296818734",
-        "Year": 2014,
-        "Rating": 4.4
-    },
-    {
-        "Title": "Watchmen",
-        "Publisher": "DC Comics",
-        "Author": "Robert Kirkman",
-        "ISBN": "978-130602361",
-        "Year": 2013,
-        "Rating": 4.5
-    },
-    {
-        "Title": "The Walking Dead",
-        "Publisher": "Image Comics",
-        "Author": "Brian K. Vaughan",
-        "ISBN": "978-682560928",
-        "Year": 2016,
-        "Rating": 4.3
-    },
-    {
-        "Title": "Deadpool",
-        "Publisher": "IDW Publishing",
-        "Author": "Frank Miller",
-        "ISBN": "978-222871494",
-        "Year": 2014,
-        "Rating": 4.5
-    },
-    {
-        "Title": "Spider-Man",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Brian K. Vaughan",
-        "ISBN": "978-866121149",
-        "Year": 2013,
-        "Rating": 4.8
-    },
-    {
-        "Title": "Wonder Woman",
-        "Publisher": "Marvel Comics",
-        "Author": "Neil Gaiman",
-        "ISBN": "978-982258141",
-        "Year": 2017,
-        "Rating": 4.7
-    },
-    {
-        "Title": "The Avengers",
-        "Publisher": "Marvel Comics",
-        "Author": "Brian K. Vaughan",
-        "ISBN": "978-101106292",
-        "Year": 2021,
-        "Rating": 4.2
-    },
-    {
-        "Title": "Green Lantern",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Mark Millar",
-        "ISBN": "978-817246681",
-        "Year": 2018,
-        "Rating": 1.7
-    },
-    {
-        "Title": "The Flash",
-        "Publisher": "Image Comics",
-        "Author": "Mark Millar",
-        "ISBN": "978-489344158",
-        "Year": 2010,
-        "Rating": 3.0
-    },
-    {
-        "Title": "Justice League",
-        "Publisher": "Image Comics",
-        "Author": "Brian K. Vaughan",
-        "ISBN": "978-255450826",
-        "Year": 2010,
-        "Rating": 2.6
-    },
-    {
-        "Title": "Hawkeye",
-        "Publisher": "DC Comics",
-        "Author": "Stan Lee",
-        "ISBN": "978-737567974",
-        "Year": 2016,
-        "Rating": 1.8
-    },
-    {
-        "Title": "Saga",
-        "Publisher": "Marvel Comics",
-        "Author": "Brian K. Vaughan",
-        "ISBN": "978-703045639",
-        "Year": 2012,
-        "Rating": 1.0
-    },
-    {
-        "Title": "The Flash",
-        "Publisher": "Marvel Comics",
-        "Author": "Frank Miller",
-        "ISBN": "978-214902545",
-        "Year": 2019,
-        "Rating": 2.5
-    },
-    {
-        "Title": "The Walking Dead",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Neil Gaiman",
-        "ISBN": "978-752440840",
-        "Year": 2020,
-        "Rating": 2.1
-    },
-    {
-        "Title": "The Walking Dead",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Stan Lee",
-        "ISBN": "978-357822667",
-        "Year": 2020,
-        "Rating": 2.4
-    },
-    {
-        "Title": "The Walking Dead",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Stan Lee",
-        "ISBN": "978-878524132",
-        "Year": 2010,
-        "Rating": 2.7
-    },
-    {
-        "Title": "X-Men",
-        "Publisher": "Image Comics",
-        "Author": "Stan Lee",
-        "ISBN": "978-842915482",
-        "Year": 2013,
-        "Rating": 1.1
-    },
-    {
-        "Title": "Y: The Last Man",
-        "Publisher": "Image Comics",
-        "Author": "Mark Millar",
-        "ISBN": "978-895119514",
-        "Year": 2013,
-        "Rating": 1.3
-    },
-    {
-        "Title": "Saga",
-        "Publisher": "DC Comics",
-        "Author": "Alan Moore",
-        "ISBN": "978-128335116",
-        "Year": 2013,
-        "Rating": 2.0
-    },
-    {
-        "Title": "Superman: Red Son",
-        "Publisher": "Image Comics",
-        "Author": "Robert Kirkman",
-        "ISBN": "978-577259662",
-        "Year": 2021,
-        "Rating": 1.7
-    },
-    {
-        "Title": "Superman: Red Son",
-        "Publisher": "IDW Publishing",
-        "Author": "Alan Moore",
-        "ISBN": "978-685221230",
-        "Year": 2016,
-        "Rating": 1.5
-    },
-    {
-        "Title": "Black Panther",
-        "Publisher": "IDW Publishing",
-        "Author": "Neil Gaiman",
-        "ISBN": "978-665265843",
-        "Year": 2019,
-        "Rating": 1.9
-    },
-    {
-        "Title": "Aquaman",
-        "Publisher": "DC Comics",
-        "Author": "Neil Gaiman",
-        "ISBN": "978-701784869",
-        "Year": 2012,
-        "Rating": 2.0
-    },
-    {
-        "Title": "Ms. Marvel",
-        "Publisher": "Marvel Comics",
-        "Author": "Mark Millar",
-        "ISBN": "978-517200183",
-        "Year": 2020,
-        "Rating": 1.0
-    },
-    {
-        "Title": "Deadpool",
-        "Publisher": "Image Comics",
-        "Author": "Alan Moore",
-        "ISBN": "978-536660002",
-        "Year": 2020,
-        "Rating": 1.2
-    },
-    {
-        "Title": "Y: The Last Man",
-        "Publisher": "Image Comics",
-        "Author": "Mark Millar",
-        "ISBN": "978-766139704",
-        "Year": 2021,
-        "Rating": 1.4
-    },
-    {
-        "Title": "Thor: God of Thunder",
-        "Publisher": "Marvel Comics",
-        "Author": "Frank Miller",
-        "ISBN": "978-212379674",
-        "Year": 2019,
-        "Rating": 2.2
-    },
-    {
-        "Title": "Hawkeye",
-        "Publisher": "DC Comics",
-        "Author": "Robert Kirkman",
-        "ISBN": "978-986916428",
-        "Year": 2020,
-        "Rating": 1.3
-    },
-    {
-        "Title": "Watchmen",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Alan Moore",
-        "ISBN": "978-530367885",
-        "Year": 2017,
-        "Rating": 1.5
-    },
-    {
-        "Title": "Superman: Red Son",
-        "Publisher": "DC Comics",
-        "Author": "Brian K. Vaughan",
-        "ISBN": "978-981878507",
-        "Year": 2021,
-        "Rating": 1.9
-    },
-    {
-        "Title": "Batman: The Dark Knight Returns",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Stan Lee",
-        "ISBN": "978-574079551",
-        "Year": 2021,
-        "Rating": 2.0
-    },
-    {
-        "Title": "Deadpool",
-        "Publisher": "Dark Horse Comics",
-        "Author": "Neil Gaiman",
-        "ISBN": "978-457831068",
-        "Year": 2016,
-        "Rating": 2.2
-    }
+  {
+    "Titel": "The Lost City of Zendar",
+    "Udgiver": "Adventure Press",
+    "Forfatter": "Emily Clark",
+    "Genrer": [ "Adventure", "Fantasy" ],
+    "ISBN": "978-1-234567-89-0",
+    "PublikationsAar": 2019,
+    "Illustrator": "James Orwell"
+  },
+  {
+    "Titel": "Mysteries of the Deep",
+    "Udgiver": "Oceanic Publishing",
+    "Forfatter": "Lucas Hargrove",
+    "Genrer": [ "Adventure", "Science Fiction" ],
+    "ISBN": "978-1-987654-32-1",
+    "PublikationsAar": 2021,
+    "Illustrator": "Nina Waterstone"
+  },
+  {
+    "Titel": "The Enchanted Forest",
+    "Udgiver": "Magic Tales",
+    "Forfatter": "Lily White",
+    "Genrer": [ "Fantasy", "Young Adult" ],
+    "ISBN": "978-1-456789-10-2",
+    "PublikationsAar": 2018,
+    "Illustrator": "George Timber"
+  },
+  {
+    "Titel": "Journey to the Stars",
+    "Udgiver": "Galactic Reads",
+    "Forfatter": "Mark Phillips",
+    "Genrer": [ "Science Fiction", "Adventure" ],
+    "ISBN": "978-1-567890-12-3",
+    "PublikationsAar": 2020,
+    "Illustrator": "Sara Jensen"
+  },
+  {
+    "Titel": "Secrets of the Old Mansion",
+    "Udgiver": "Mystery House",
+    "Forfatter": "Amanda Greene",
+    "Genrer": [ "Mystery", "Thriller" ],
+    "ISBN": "978-1-678901-23-4",
+    "PublikationsAar": 2017,
+    "Illustrator": "Peter Johnson"
+  }
 ]
