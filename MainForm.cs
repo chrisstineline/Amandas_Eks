@@ -27,7 +27,7 @@ namespace Amanda_Eks
             switch (type)
             {
                 case "Lydbog":
-                    jsonFilePath = @"Database\Lydb�ger.json";
+                    jsonFilePath = @"Database\Lydb�ger.json";
                     jsonString = File.ReadAllText(jsonFilePath);
 
                     // Deserialize the JSON data to a List of Lydbog objects
@@ -56,7 +56,7 @@ namespace Amanda_Eks
                     initializeFilters(lydboeger);
                     break;
                 case "Bog":
-                    jsonFilePath = @"Database\B�ger.json";
+                    jsonFilePath = @"Database\B�ger.json";
                     jsonString = File.ReadAllText(jsonFilePath);
 
                     // Deserialize the JSON data to a List of Person objects
@@ -189,12 +189,12 @@ namespace Amanda_Eks
             }
         }
 
-        private void initializeFilters(List<Bog> b�ger)
+        private void initializeFilters(List<Bog> b�ger)
         {
             //Clear previous filters.
             clearAllFilters();
 
-            foreach (Bog bog in b�ger)
+            foreach (Bog bog in b�ger)
             {
                 //Find possible year filters and add them to dropdown.
                 if (yearDropdown.Items.Count == 0)
@@ -276,12 +276,12 @@ namespace Amanda_Eks
             }
         }
 
-        private void initializeFilters(List<Lydbog> lydb�ger)
+        private void initializeFilters(List<Lydbog> lydb�ger)
         {
             //Clear previous filters.
             clearAllFilters();
 
-            foreach (Lydbog bog in lydb�ger)
+            foreach (Lydbog bog in lydb�ger)
             {
                 //Find possible year filters and add them to dropdown.
                 if (yearDropdown.Items.Count == 0)
@@ -309,9 +309,21 @@ namespace Amanda_Eks
                 }
 
                 //Find possible author filters and add them to dropdown
+                // I.e. --> Hver individuel forfatter listes -- Flere bøger kan have samme forfatter, men vi laver en sort på forfatter output 
+                // til listen med: 
+                // bool exists
+
+                // Alternativt kunne man jo lave en string match, men det ville blive indviklet, der f.eks. ikke  er et forfatternavn på en bog, men en titel, forlag eller
+                // ISBN. 
+
+
+                // Koden er genbrugt bare med dropdown på Genre og publikationsår. Fordelen i det, er at vi ikke skal tænke på de forskellige datatyper, da det kun er indholdet af 
+                // et datafelt der skal matches, ikke dens datatype.
+                // Derfor behøves der IKKE laves ny type-specifik kode til int, string, referencer (hyperlinks), tid osv osv
+
                 if (authorDropdown.Items.Count == 0)
                 {
-                    authorDropdown.Items.Add(bog.Forfatter.ToString());
+                    authorDropdown.Items.Add(bog.Forfatter.ToString());     
                 }
                 else
                 {
@@ -364,14 +376,18 @@ namespace Amanda_Eks
             }
         }
 
+        // Hvilken type medie der kan vælges, og et default mode --> 
+        // Vi kan nemt tilføje filtre, f.eks. Online publikation, Faglitteratur, Avis 
+
+
         private void applyFilters(String filter)
         {
-            if (filter == null) { MessageBox.Show("Du skal v�lge et filter!!");}
+            if (filter == null) { MessageBox.Show("Du skal v�lge et filter!!");}
 
             switch (typeDropdown.SelectedItem.ToString())
             {
                 case "Lydbog":
-                    List<Lydbog> Lydb�ger = new List<Lydbog>();
+                    List<Lydbog> Lydb�ger = new List<Lydbog>();
                     
                     break;
                 case "Bog":
@@ -383,6 +399,9 @@ namespace Amanda_Eks
                     break;
             }
         }
+
+
+        // Nedestående kode er er logikken bag knapperne, der giver brugeren mulighed for at filtrere og vælge fra listerne
 
         private void clearAllFilters()
         {
@@ -422,6 +441,13 @@ namespace Amanda_Eks
             //Implement me!!
         }
 
+        // Threading --> 
+        // Når programmet startes, startes der en tråd i baggrunden. Tråden er sat til at simulere en udlåning af et medie. 
+        // Der udlånes baseret på en random class, hvorpå det skrives til vinduet brugeren kigger på. 
+        // Når der laves en random udlåning, kan brugeren af programmet set det. Det skrives også til en ny liste, der ved lukning af programmet 
+        // producerer et JSON dokument, Udlånte, baseret på dato. 
+
+        
         public void Start()
         {
             if (!_running)
@@ -455,11 +481,11 @@ namespace Amanda_Eks
                     switch (typeDropdown.SelectedItem.ToString())
                     {
                         case "Lydbog":
-                            List<Lydbog> Lydb�ger = new List<Lydbog>();
+                            List<Lydbog> Lydb�ger = new List<Lydbog>();
 
                             break;
                         case "Bog":
-                            List<Bog> b�ger = new List<Bog>();
+                            List<Bog> b�ger = new List<Bog>();
 
                             break;
                         case "Tegneserie":
