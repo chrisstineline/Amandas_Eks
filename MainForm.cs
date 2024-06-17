@@ -8,9 +8,15 @@ namespace Amanda_Eks
 {
     public partial class MainForm : Form
     {
+        private Thread _thread;
+
+        private bool _running;
+
         public MainForm()
         {
             InitializeComponent();
+            _running = false;
+            _thread = new Thread(new ThreadStart(Run));
         }
 
         private void initializeBooks(String type)
@@ -358,6 +364,26 @@ namespace Amanda_Eks
             }
         }
 
+        private void applyFilters(String filter)
+        {
+            if (filter == null) { MessageBox.Show("Du skal vælge et filter!!");}
+
+            switch (typeDropdown.SelectedItem.ToString())
+            {
+                case "Lydbog":
+                    List<Lydbog> Lydbøger = new List<Lydbog>();
+                    
+                    break;
+                case "Bog":
+                    break;
+                case "Tegneserie":
+                    break;
+                default:
+                    MessageBox.Show("Type ikke valgt!");
+                    break;
+            }
+        }
+
         private void clearAllFilters()
         {
             yearDropdown.Items.Clear();
@@ -394,6 +420,99 @@ namespace Amanda_Eks
         private void genreDropdown_SelectionChangeCommitted(object sender, EventArgs e)
         {
             //Implement me!!
+        }
+
+        public void Start()
+        {
+            if (!_running)
+            {
+                _running = true;
+                _thread.Start();
+                Console.WriteLine("Thread started.");
+            }
+        }
+
+        public void Stop()
+        {
+            if (_running)
+            {
+                _running = false;
+                _thread.Join();  // Wait for the thread to finish
+                Console.WriteLine("Thread stopped.");
+            }
+        }
+
+        private void Run()
+        {
+            Random random = new Random();
+            while (_running)
+            {
+                Console.WriteLine("Thread is running...");
+                Thread.Sleep((int)random.NextInt64(long.Parse("5000"), long.Parse("25000")));  // Simulate some wait time.
+
+                Invoke((MethodInvoker)delegate
+                {
+                    switch (typeDropdown.SelectedItem.ToString())
+                    {
+                        case "Lydbog":
+                            List<Lydbog> Lydbøger = new List<Lydbog>();
+
+                            break;
+                        case "Bog":
+                            List<Bog> bøger = new List<Bog>();
+
+                            break;
+                        case "Tegneserie":
+                            List<Tegneserie> tegneserier = new List<Tegneserie>();
+
+                            foreach (DataGridViewRow row in booksList.Rows)
+                            {
+                                if (row.IsNewRow) continue;
+
+                                Tegneserie tegneserie = new Tegneserie
+                                {
+                                    Titel = row.Cells["Titel"].Value.ToString(),
+                                    Forfatter = row.Cells["Forfatter"].Value.ToString(),
+                                    Genrer = row.Cells["Genrer"].Value.ToString().Split(',').Select(g => g.Trim()).ToList(),
+                                    PublikationsAar = int.Parse(row.Cells["PublikationsAar"].Value.ToString()),
+                                    Udgiver = row.Cells["Udgiver"].Value.ToString(),
+                                    ISBN = row.Cells["ISBN"].Value.ToString(),
+                                    Illustrator = row.Cells["Illustrator"].Value.ToString()
+                                };
+
+                                tegneserier.Add(tegneserie);
+                            }
+
+                            rentHistoryList = new BindingSource
+                            {
+                                DataSource = tegneserier.Select(book => new
+                                {
+                                    book.Titel,
+                                    book.Forfatter,
+                                    Genrer = string.Join(", ", book.Genrer),
+                                    book.PublikationsAar,
+                                    book.Udgiver,
+                                    book.ISBN,
+                                    book.Illustrator,
+                                }).ToList()
+                            };
+
+                            // Set the data source for the DataGridView
+                            booksList.DataSource = bookBindingList;
+
+                            rent
+
+                            tegneserier.ElementAt(random.Next(0, tegneserier.Count - 1));
+
+                            break;
+                        default:
+                            MessageBox.Show("Type ikke valgt!");
+                            break;
+                    }
+
+                    rentHistoryList.
+                });
+            }
         }
     }
 }

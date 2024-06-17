@@ -32,10 +32,11 @@
             this.yearDropdown = new System.Windows.Forms.ComboBox();
             this.authorDropdown = new System.Windows.Forms.ComboBox();
             this.genreDropdown = new System.Windows.Forms.ComboBox();
-            this.historyList = new System.Windows.Forms.ListView();
             this.saveHistoryButton = new System.Windows.Forms.Button();
             this.booksList = new System.Windows.Forms.DataGridView();
+            this.rentHistoryList = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.booksList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rentHistoryList)).BeginInit();
             this.SuspendLayout();
             // 
             // typeDropdown
@@ -78,14 +79,6 @@
             this.genreDropdown.TabIndex = 4;
             this.genreDropdown.SelectionChangeCommitted += new System.EventHandler(this.genreDropdown_SelectionChangeCommitted);
             // 
-            // historyList
-            // 
-            this.historyList.Location = new System.Drawing.Point(485, 204);
-            this.historyList.Name = "historyList";
-            this.historyList.Size = new System.Drawing.Size(303, 234);
-            this.historyList.TabIndex = 5;
-            this.historyList.UseCompatibleStateImageBehavior = false;
-            // 
             // saveHistoryButton
             // 
             this.saveHistoryButton.Location = new System.Drawing.Point(713, 160);
@@ -104,21 +97,31 @@
             this.booksList.Size = new System.Drawing.Size(450, 397);
             this.booksList.TabIndex = 7;
             // 
+            // rentHistoryList
+            // 
+            this.rentHistoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.rentHistoryList.Location = new System.Drawing.Point(482, 217);
+            this.rentHistoryList.Name = "rentHistoryList";
+            this.rentHistoryList.RowTemplate.Height = 25;
+            this.rentHistoryList.Size = new System.Drawing.Size(306, 221);
+            this.rentHistoryList.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.rentHistoryList);
             this.Controls.Add(this.booksList);
             this.Controls.Add(this.saveHistoryButton);
-            this.Controls.Add(this.historyList);
             this.Controls.Add(this.genreDropdown);
             this.Controls.Add(this.authorDropdown);
             this.Controls.Add(this.yearDropdown);
             this.Controls.Add(this.typeDropdown);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Bogprogram";
             ((System.ComponentModel.ISupportInitialize)(this.booksList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rentHistoryList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -129,8 +132,8 @@
         private ComboBox yearDropdown;
         private ComboBox authorDropdown;
         private ComboBox genreDropdown;
-        private ListView historyList;
         private Button saveHistoryButton;
         private DataGridView booksList;
+        private DataGridView rentHistoryList;
     }
 }
