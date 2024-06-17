@@ -31,7 +31,7 @@ namespace Amanda_Eks
             switch (type)
             {
                 case "Lydbog":
-                    jsonFilePath = @"Database\Lydb�ger.json";
+                    jsonFilePath = @"Database\Lydbøger.json";
                     jsonString = File.ReadAllText(jsonFilePath);
 
                     // Deserialize the JSON data to a List of Lydbog objects
@@ -60,7 +60,7 @@ namespace Amanda_Eks
                     initializeFilters(lydboeger);
                     break;
                 case "Bog":
-                    jsonFilePath = @"Database\B�ger.json";
+                    jsonFilePath = @"Database\Bøger.json";
                     jsonString = File.ReadAllText(jsonFilePath);
 
                     // Deserialize the JSON data to a List of Person objects
@@ -193,12 +193,12 @@ namespace Amanda_Eks
             }
         }
 
-        private void initializeFilters(List<Bog> b�ger)
+        private void initializeFilters(List<Bog> bøger)
         {
             //Clear previous filters.
             clearAllFilters();
 
-            foreach (Bog bog in b�ger)
+            foreach (Bog bog in bøger)
             {
                 //Find possible year filters and add them to dropdown.
                 if (yearDropdown.Items.Count == 0)
@@ -280,12 +280,12 @@ namespace Amanda_Eks
             }
         }
 
-        private void initializeFilters(List<Lydbog> lydb�ger)
+        private void initializeFilters(List<Lydbog> lydbøger)
         {
             //Clear previous filters.
             clearAllFilters();
 
-            foreach (Lydbog bog in lydb�ger)
+            foreach (Lydbog bog in lydbøger)
             {
                 //Find possible year filters and add them to dropdown.
                 if (yearDropdown.Items.Count == 0)
@@ -386,12 +386,12 @@ namespace Amanda_Eks
 
         private void applyFilters(String filter)
         {
-            if (filter == null) { MessageBox.Show("Du skal v�lge et filter!!");}
+            if (filter == null) { MessageBox.Show("Du skal vælge et filter!!");}
 
             switch (typeDropdown.SelectedItem.ToString())
             {
                 case "Lydbog":
-                    List<Lydbog> Lydb�ger = new List<Lydbog>();
+                    List<Lydbog> Lydbøger = new List<Lydbog>();
                     
                     break;
                 case "Bog":
@@ -482,18 +482,19 @@ namespace Amanda_Eks
 
                 Invoke((MethodInvoker)delegate
                 {
-                    switch (typeDropdown.SelectedItem.ToString())
+                    switch (typeDropdown.SelectedItem.ToString() != null ? typeDropdown.SelectedItem.ToString() : null)
                     {
                         case "Lydbog":
-                            List<Lydbog> Lydb�ger = new List<Lydbog>();
+                            List<Lydbog> Lydbøger = new List<Lydbog>();
 
                             break;
                         case "Bog":
-                            List<Bog> b�ger = new List<Bog>();
+                            List<Bog> bøger = new List<Bog>();
 
                             break;
                         case "Tegneserie":
                             List<Tegneserie> tegneserier = new List<Tegneserie>();
+                            Random randomBook = new Random();
 
                             foreach (DataGridViewRow row in booksList.Rows)
                             {
@@ -512,6 +513,8 @@ namespace Amanda_Eks
 
                                 tegneserier.Add(tegneserie);
                             }
+
+                            tegneserier.ElementAt(random.NextInt64(0, tegneserier.Count)).
 
                             rentHistoryList = new BindingSource
                             {
