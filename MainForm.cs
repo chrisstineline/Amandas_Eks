@@ -3,6 +3,7 @@ using System;
 using Amanda_Eks.models;
 using static System.Reflection.Metadata.BlobBuilder;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.Logging;
 
 // <-- Comment, single line 
 
@@ -135,15 +136,22 @@ namespace Amanda_Eks
                     yearDropdown.Items.Add(tegneserie.PublikationsAar.ToString());
                 } else
                 {
+                    bool exists = false;
                     foreach (var item in yearDropdown.Items)
                     {
                         if (item.ToString().Equals(tegneserie.PublikationsAar.ToString()))
                         {
-                            continue;
-                        } else
-                        {
-                            yearDropdown.Items.Add(tegneserie.PublikationsAar.ToString());
+                            exists = true;
                         }
+                    }
+
+                    if (exists)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        yearDropdown.Items.Add(tegneserie.PublikationsAar.ToString());
                     }
                 }
 
@@ -154,16 +162,21 @@ namespace Amanda_Eks
                 }
                 else
                 {
+                    bool exists = false;
                     foreach (var item in authorDropdown.Items)
                     {
                         if (item.ToString().Equals(tegneserie.Forfatter.ToString()))
                         {
-                            continue;
+                            exists = true;
                         }
-                        else
-                        {
-                            authorDropdown.Items.Add(tegneserie.Forfatter.ToString());
-                        }
+                    }
+
+                    if (exists)
+                    {
+                        continue;
+                    } else
+                    {
+                        authorDropdown.Items.Add(tegneserie.Forfatter.ToString());
                     }
                 }
 
@@ -177,16 +190,18 @@ namespace Amanda_Eks
                     }
                     else
                     {
+                        bool exists = false;
                         foreach (var item in genreDropdown.Items)
                         {
                             if (item.ToString().Equals(genre))
                             {
-                                continue;
+                                exists = true;
                             }
-                            else
-                            {
-                                genreDropdown.Items.Add(genre);
-                            }
+                        }
+
+                        if (exists)
+                        {
+                            genreDropdown.Items.Add(genre);
                         }
                     }
                 }
@@ -391,8 +406,6 @@ namespace Amanda_Eks
             switch (typeDropdown.SelectedItem.ToString())
             {
                 case "Lydbog":
-                    List<Lydbog> Lydbøger = new List<Lydbog>();
-                    
                     break;
                 case "Bog":
                     break;
@@ -417,6 +430,8 @@ namespace Amanda_Eks
         private void typeDropdown_SelectionChangeCommitted(object sender, EventArgs e)
         {
             initializeBooks(typeDropdown.SelectedItem.ToString() != null ? typeDropdown.SelectedItem.ToString() : null);
+            Start();
+
         }
 
         private void booksList_SelectedIndexChanged(object sender, EventArgs e)
@@ -478,23 +493,142 @@ namespace Amanda_Eks
             while (_running)
             {
                 Console.WriteLine("Thread is running...");
-                Thread.Sleep((int)random.NextInt64(long.Parse("5000"), long.Parse("25000")));  // Simulate some wait time.
+                Thread.Sleep((int)random.NextInt64(long.Parse("5000"), long.Parse("10000")));  // Simulate some wait time between rents.
+
+                if (!_running) break;
 
                 Invoke((MethodInvoker)delegate
                 {
                     switch (typeDropdown.SelectedItem.ToString() != null ? typeDropdown.SelectedItem.ToString() : null)
                     {
                         case "Lydbog":
-                            List<Lydbog> Lydbøger = new List<Lydbog>();
+                            List<Lydbog> lydboeger = new List<Lydbog>();
+                            List<Lydbog> udlåntelydboeger = new List<Lydbog>();
+                            Lydbog lydbogTemp = new Lydbog();
+                            Random randomlydBook = new Random();
 
+                            foreach (DataGridViewRow row in booksList.Rows)
+                            {
+                                if (row.IsNewRow) continue;
+
+                                Lydbog bog = new Lydbog
+                                {
+                                    Titel = row.Cells["Titel"].Value.ToString(),
+                                    Forfatter = row.Cells["Forfatter"].Value.ToString(),
+                                    Genrer = row.Cells["Genrer"].Value.ToString().Split(',').Select(g => g.Trim()).ToList(),
+                                    PublikationsAar = int.Parse(row.Cells["PublikationsAar"].Value.ToString()),
+                                    Udgiver = row.Cells["Udgiver"].Value.ToString(),
+                                    ISBN = row.Cells["ISBN"].Value.ToString()
+                                };
+
+                                lydboeger.Add(bog);
+                            }
+
+                            if (rentHistoryList.RowCount > 0)
+                            {
+                                foreach (DataGridViewRow row in rentHistoryList.Rows)
+                                {
+                                    if (row.IsNewRow) continue;
+
+                                    Lydbog bog = new Lydbog
+                                    {
+                                        Titel = row.Cells["Titel"].Value.ToString(),
+                                        Forfatter = row.Cells["Forfatter"].Value.ToString(),
+                                        Genrer = row.Cells["Genrer"].Value.ToString().Split(',').Select(g => g.Trim()).ToList(),
+                                        PublikationsAar = int.Parse(row.Cells["PublikationsAar"].Value.ToString()),
+                                        Udgiver = row.Cells["Udgiver"].Value.ToString(),
+                                        ISBN = row.Cells["ISBN"].Value.ToString()
+                                    };
+
+                                    udlåntelydboeger.Add(bog);
+                                }
+                            }
+
+                            lydbogTemp = lydboeger.ElementAt((int)random.NextInt64(0, lydboeger.Count - 1));
+                            udlåntelydboeger.Add(lydbogTemp); //tilføj til udlånt
+
+                            BindingSource rentHistoryBindingSource = new BindingSource
+                            {
+                                DataSource = udlåntelydboeger.Select(book => new
+                                {
+                                    book.Titel,
+                                    book.Forfatter,
+                                    Genrer = string.Join(", ", book.Genrer),
+                                    book.PublikationsAar,
+                                    book.Udgiver,
+                                    book.ISBN,
+                                }).ToList()
+                            };
+
+                            rentHistoryList.DataSource = rentHistoryBindingSource;
                             break;
                         case "Bog":
-                            List<Bog> bøger = new List<Bog>();
+                            List<Bog> boeger = new List<Bog>();
+                            List<Bog> udlånteboeger = new List<Bog>();
+                            Bog bogTemp = new Bog();
+                            Random randomBook = new Random();
+
+                            foreach (DataGridViewRow row in booksList.Rows)
+                            {
+                                if (row.IsNewRow) continue;
+
+                                Bog bog = new Bog
+                                {
+                                    Titel = row.Cells["Titel"].Value.ToString(),
+                                    Forfatter = row.Cells["Forfatter"].Value.ToString(),
+                                    Genrer = row.Cells["Genrer"].Value.ToString().Split(',').Select(g => g.Trim()).ToList(),
+                                    PublikationsAar = int.Parse(row.Cells["PublikationsAar"].Value.ToString()),
+                                    Udgiver = row.Cells["Udgiver"].Value.ToString(),
+                                    ISBN = row.Cells["ISBN"].Value.ToString()
+                                };
+
+                                boeger.Add(bog);
+                            }
+
+                            if (rentHistoryList.RowCount > 0)
+                            {
+                                foreach (DataGridViewRow row in rentHistoryList.Rows)
+                                {
+                                    if (row.IsNewRow) continue;
+
+                                    Bog bog = new Bog
+                                    {
+                                        Titel = row.Cells["Titel"].Value.ToString(),
+                                        Forfatter = row.Cells["Forfatter"].Value.ToString(),
+                                        Genrer = row.Cells["Genrer"].Value.ToString().Split(',').Select(g => g.Trim()).ToList(),
+                                        PublikationsAar = int.Parse(row.Cells["PublikationsAar"].Value.ToString()),
+                                        Udgiver = row.Cells["Udgiver"].Value.ToString(),
+                                        ISBN = row.Cells["ISBN"].Value.ToString()
+                                    };
+
+                                    udlånteboeger.Add(bog);
+                                }
+                            }
+
+                            bogTemp = boeger.ElementAt((int)random.NextInt64(0, boeger.Count - 1));
+                            udlånteboeger.Add(bogTemp); //tilføj til udlånt
+
+                            BindingSource rentHistoryBoegerBindingSource = new BindingSource
+                            {
+                                DataSource = udlånteboeger.Select(book => new
+                                {
+                                    book.Titel,
+                                    book.Forfatter,
+                                    Genrer = string.Join(", ", book.Genrer),
+                                    book.PublikationsAar,
+                                    book.Udgiver,
+                                    book.ISBN,
+                                }).ToList()
+                            };
+
+                            rentHistoryList.DataSource = rentHistoryBoegerBindingSource;
 
                             break;
                         case "Tegneserie":
                             List<Tegneserie> tegneserier = new List<Tegneserie>();
-                            Random randomBook = new Random();
+                            List<Tegneserie> udlånteTegneserier = new List<Tegneserie>();
+                            Tegneserie tegneserieTemp = new Tegneserie();
+                            Random randomTegneserie = new Random();
 
                             foreach (DataGridViewRow row in booksList.Rows)
                             {
@@ -514,11 +648,33 @@ namespace Amanda_Eks
                                 tegneserier.Add(tegneserie);
                             }
 
-                            tegneserier.ElementAt(random.NextInt64(0, tegneserier.Count)).
-
-                            rentHistoryList = new BindingSource
+                            if (rentHistoryList.RowCount > 0)
                             {
-                                DataSource = tegneserier.Select(book => new
+                                foreach (DataGridViewRow row in rentHistoryList.Rows)
+                                {
+                                    if (row.IsNewRow) continue;
+
+                                    Tegneserie tegneserie = new Tegneserie
+                                    {
+                                        Titel = row.Cells["Titel"].Value.ToString(),
+                                        Forfatter = row.Cells["Forfatter"].Value.ToString(),
+                                        Genrer = row.Cells["Genrer"].Value.ToString().Split(',').Select(g => g.Trim()).ToList(),
+                                        PublikationsAar = int.Parse(row.Cells["PublikationsAar"].Value.ToString()),
+                                        Udgiver = row.Cells["Udgiver"].Value.ToString(),
+                                        ISBN = row.Cells["ISBN"].Value.ToString(),
+                                        Illustrator = row.Cells["Illustrator"].Value.ToString()
+                                    };
+
+                                    udlånteTegneserier.Add(tegneserie);
+                                }
+                            }
+
+                            tegneserieTemp = tegneserier.ElementAt((int)random.NextInt64(0, tegneserier.Count - 1));
+                            udlånteTegneserier.Add(tegneserieTemp); //tilføj til udlånt
+
+                            BindingSource rentHistoryTegneserierBindingSource = new BindingSource
+                            {
+                                DataSource = udlånteTegneserier.Select(book => new
                                 {
                                     book.Titel,
                                     book.Forfatter,
@@ -530,12 +686,7 @@ namespace Amanda_Eks
                                 }).ToList()
                             };
 
-                            // Set the data source for the DataGridView
-                            booksList.DataSource = bookBindingList;
-
-                            rent
-
-                            tegneserier.ElementAt(random.Next(0, tegneserier.Count - 1));
+                            rentHistoryList.DataSource = rentHistoryTegneserierBindingSource;
 
                             break;
                         default:
@@ -543,9 +694,38 @@ namespace Amanda_Eks
                             break;
                     }
 
-                    rentHistoryList.
                 });
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            List<Publikation> pubs = new List<Publikation>();
+
+            _running = false;
+
+            if (rentHistoryList.RowCount > 0)
+            {
+                foreach (DataGridViewRow row in rentHistoryList.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    Publikation pub = new Publikation
+                    {
+                        Titel = row.Cells["Titel"].Value.ToString(),
+                        Forfatter = row.Cells["Forfatter"].Value.ToString(),
+                        Genrer = row.Cells["Genrer"].Value.ToString().Split(',').Select(g => g.Trim()).ToList(),
+                        PublikationsAar = int.Parse(row.Cells["PublikationsAar"].Value.ToString()),
+                        Udgiver = row.Cells["Udgiver"].Value.ToString(),
+                        ISBN = row.Cells["ISBN"].Value.ToString()
+                    };
+
+                    pubs.Add(pub);
+                }
+            }
+
+            var json = JsonSerializer.Serialize(pubs);
+            File.WriteAllText("backupAfUdlånteBoeger.json", json);
         }
     }
 }

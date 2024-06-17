@@ -120,6 +120,7 @@
             this.Controls.Add(this.typeDropdown);
             this.Name = "MainForm";
             this.Text = "Bogprogram";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.booksList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rentHistoryList)).EndInit();
             this.ResumeLayout(false);
