@@ -4,6 +4,10 @@ using Amanda_Eks.models;
 using static System.Reflection.Metadata.BlobBuilder;
 using System.Windows.Forms;
 
+// <-- Comment, single line 
+
+
+
 namespace Amanda_Eks
 {
     public partial class MainForm : Form
@@ -447,7 +451,7 @@ namespace Amanda_Eks
         // Når der laves en random udlåning, kan brugeren af programmet set det. Det skrives også til en ny liste, der ved lukning af programmet 
         // producerer et JSON dokument, Udlånte, baseret på dato. 
 
-        
+
         public void Start()
         {
             if (!_running)
